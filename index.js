@@ -16,6 +16,7 @@ io.on('connection', (socket) => {
   socket.emit('queue', queue);
 
   socket.on('joinQueue', (user) => {
+    console.log('User joined queue:', user);
     queue.push(user);
     io.emit('queue', queue);
   });
