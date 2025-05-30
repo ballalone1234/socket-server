@@ -41,6 +41,24 @@ const userId = req.body.user_id;
   }
 });
 
+router.post('/unbooking', async (req, res) => {
+const id = req.body.id;
+const userId = req.body.user_id;
+  try {
+    const seatById = await Seat.updateOne(
+        { _id: id, user_id: userId, is_available: false },
+        { $set: { user_id: null, is_available: true } }
+    );
+
+    if (seatById.modifiedCount === 0) {
+        return res.status(404).json({ msg: 'Seat not found or already available' });
+        }
+    res.json(seatById);
+  } catch (err) {
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
+
 router.post('', async (req, res) => {
 
     try {
