@@ -96,7 +96,7 @@ io.on('connection', (socket) => {
       const deleteStatus = await Queue.deleteOne({ token: token.token });
     console.log('deleteStatus', deleteStatus);
     if (deleteStatus.deletedCount > 0) {
-      console.log(`deleted queue with token: ${token.token}`);
+      console.log(`deleted queue with token: ${token.token} successfully`);
     } 
       console.log('User manualDisconnect:', socket.id , 'Token:', token.token);
 
